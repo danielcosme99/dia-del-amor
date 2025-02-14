@@ -56,7 +56,6 @@ function startHeartAnimation() {
 		}
 		if (d >= 30) {
 			clearInterval(a);
-			showMessages()
 		} else {
 			d += 0.2
 		}
@@ -107,13 +106,6 @@ function timeElapse(c) {
 	$("#elapseClock").html(a)
 }
 
-function showMessages() {
-	adjustWordsPosition();
-	$("#messages").fadeIn(5000, function () {
-		showLoveU()
-	})
-}
-
 
 
 function adjustCodePosition() {
@@ -129,6 +121,7 @@ function resizeCanvas() {
     var garden = document.getElementById("garden");
 
     var width = loveHeart.clientWidth;
+	var height = loveHeart.clientHeight;
     garden.width = width;
     garden.height = height; // Mantener la proporción del corazón
 }

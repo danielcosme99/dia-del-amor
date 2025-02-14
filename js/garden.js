@@ -165,15 +165,3 @@ Garden.randomrgba = function (i, n, h, m, l, d, k) {
 		return Garden.rgba(c, f, j, k)
 	}
 };
-
-function resizeCanvas() {
-    var loveHeart = document.getElementById("loveHeart");
-    var garden = document.getElementById("garden");
-
-    var width = loveHeart.clientWidth;
-    garden.width = width;
-    garden.height = width * 0.75; // Mantener la proporción del corazón
-}
-
-window.onload = resizeCanvas;
-window.onresize = resizeCanvas;
