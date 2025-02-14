@@ -11,10 +11,17 @@
 <body>
 <!-- partial:index.partial.html -->
 
-
+<audio id="audioPlayer" autoplay>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Tu navegador no soporta el audio.
+</audio>
 <div id="heart"></div>
+
 <div class="envelope">
     
+    <div id="avisoCarta" style="text-align: center; font-size: 30px; color: rgb(0, 0, 0); margin-bottom: 10px;">
+        <span>📜 Toca la carta para abrirla y para cerrarla toca fuera.</span>
+    </div>
 	<div class="envelope-inner">
 
 		<div class="envelope-front">
@@ -34,17 +41,14 @@
 
 		<div class="envelope-back">
 			<div class="top-fold"></div>
-
+            
 			<div class="letter">
                 <img src="https://img.freepik.com/vector-premium/pulgar-dedos-imprimir-marca-huella-dactilar-amor-corazon_53500-1839.jpg" alt="love1" class="custom-image">
                 
-                <p>Para <span id="nombreMensaje"></span>,</p>
+                <p>Querida <span id="nombreMensaje"></span>,</p>
                 
-                <p style="padding-left: 30px; padding-right: 30px;">
-                    Eres mi razón de sonreír cada día.  
-                    A tu lado, todo es más bonito y especial.  
-                    <span class="highlight">Te quiero con todo mi corazón. ❤️</span>
-                </p>
+                <p id="mensajePrincipal" style="padding-left: 30px; padding-right: 30px;"></p>
+                <p id="mensajeFinal" class="highlight"></p>
             
                 <img src="https://img.freepik.com/fotos-premium/imagen-flores-amarillas-palabras-sol-citadas-ella_1191871-60686.jpg" alt="love2" class="custom-image2">
             </div>
@@ -68,6 +72,59 @@
         document.getElementById("nombreMensaje").innerText = "Amor";
     }
 </script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        // Banco de frases principales
+        var frasesPrincipales = [
+            "Me encanta tu sonrisa. A tu lado, todo es más bonito, alegre y especial.",
+            "Desde que te conoci, mi vida es más feliz y llena de amor. Le diste color a mi mundo.",
+            "No hay día que no agradezca por conocerte. Eres mi más bonita casualidad.",
+            "Eres lo mejor, contigo los momentos simples se convierten en un hermoso recuerdo.",
+            "Me encantas. Eres la manera que tiene el mundo de decirme lo bonita que es la vida."
+        ];
 
+        // Banco de frases finales cortas
+        var frasesFinales = [
+            "Te quiero con todo mi corazón. ❤️",
+            "Eres lo mejor que me ha pasado. 💖",
+            "Siempre serás mi persona favorita. 💕",
+            "Mi mundo es mejor contigo. 💓",
+            "Mi amor por ti es infinito. ✨"
+        ];
+
+        // Elegir una frase aleatoria de cada banco
+        var fraseElegidaPrincipal = frasesPrincipales[Math.floor(Math.random() * frasesPrincipales.length)];
+        var fraseElegidaFinal = frasesFinales[Math.floor(Math.random() * frasesFinales.length)];
+
+        // Insertar las frases en los párrafos
+        document.getElementById("mensajePrincipal").innerText = fraseElegidaPrincipal;
+        document.getElementById("mensajeFinal").innerText = fraseElegidaFinal;
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Banco de canciones (rutas a los archivos de audio)
+        var canciones = [
+            "canciones/song1.mp3",
+            "canciones/song2.mp3",
+            "canciones/song3.mp3",
+            "canciones/song4.mp3"
+        ];
+
+        // Seleccionar una canción aleatoria
+        var cancionAleatoria = canciones[Math.floor(Math.random() * canciones.length)];
+
+        // Asignar la canción al reproductor
+        var audioPlayer = document.getElementById("audioPlayer");
+        var audioSource = document.getElementById("audioSource");
+        audioSource.src = cancionAleatoria;
+        audioPlayer.load(); // Cargar la canción seleccionada
+
+        // Intentar reproducir automáticamente (algunos navegadores bloquean autoplay)
+        audioPlayer.play().catch(error => {
+            console.log("Autoplay bloqueado. Se necesita interacción del usuario.");
+        });
+    });
+</script>
 </body>
 </html>

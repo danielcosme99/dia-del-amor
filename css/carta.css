@@ -10,11 +10,17 @@ html{
 	min-height: 100vh;
 	overflow: auto;
 }
+body {
+    background: url('../sanvalentin.png') no-repeat center 100px;
+    background-size: contain;
+	max-width: 100%;
+}
+
 
 body  {
 	position: relative;
 	font-family: "Quicksand", sans-serif;
-	background: #fdc9d1;
+	background-color: #fdc9d1;
 	color: #333;
 	display: flex;
 	justify-content: center;
@@ -86,7 +92,14 @@ body  {
 		--bells-width: 60px;
 		--front-font-size: 3.25rem;
 	}
+	body {
+        
+        background-size: 800px; /* Evita que se expanda */
+    
+    }
 }
+
+
 /* shadow */
 .envelope::after {
 	content: "";
@@ -230,8 +243,8 @@ body  {
 }
 
 .custom-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: contain; 
 }
 .custom-image2 {

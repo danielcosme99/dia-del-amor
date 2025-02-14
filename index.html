@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	
 <div id="mainDiv">
 	<div id="content">
 		<div id="loveHeart">
@@ -26,7 +27,7 @@
 			<div id="words">
 				<div id="step1" class="step active">
 					<h2>¿Cómo te llamas?</h2>
-					<input type="text" id="nameInput" placeholder="Tu nombre" />
+					<input type="text" id="nameInput" placeholder="Tu nombre" maxlength="20" />
 					<br />
 					<button id="nameSubmit">Enviar</button>
 					<p id="nameError" style="color: red; display: none;"></p>
@@ -48,23 +49,37 @@
 </script>
 <script type="text/javascript">
     document.getElementById("nameSubmit").addEventListener("click", function () {
-    var name = document.getElementById("nameInput").value.trim();
-    
-    if (name === "") {
+        var nameInput = document.getElementById("nameInput");
         var nameError = document.getElementById("nameError");
-        nameError.innerText = "Por favor, ingresa tu nombre.";
-        nameError.style.display = "block";
-        nameError.style.color = "black"; // Cambiar color a negro
-        return;
-    }
+        var name = nameInput.value.trim();
 
-    // Guardar el nombre en localStorage
-    localStorage.setItem("nombre", name);
-    
-    // Redirigir a la segunda página
-    window.location.href = "carta.html";
-});
+        if (name === "") {
+            nameError.innerText = "Por favor, ingresa tu nombre.";
+            nameError.style.display = "block";
+            nameError.style.color = "black"; // Mensaje en negro
+            return;
+        }
 
+        // Convertir la primera letra de cada palabra en mayúscula
+        name = name.replace(/\b\w/g, function (char) {
+            return char.toUpperCase();
+        });
+
+        // Guardar el nombre en localStorage
+        localStorage.setItem("nombre", name);
+
+        // Redirigir a la segunda página
+        window.location.href = "carta.html";
+    });
+
+    // Forzar que la primera letra de cada palabra se mantenga en mayúscula mientras se escribe
+    document.getElementById("nameInput").addEventListener("input", function () {
+        var name = this.value.replace(/\b\w/g, function (char) {
+            return char.toUpperCase();
+        });
+        this.value = name;
+    });
 </script>
+
 </body>
 </html>
